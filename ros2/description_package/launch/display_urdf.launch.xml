@@ -1,0 +1,16 @@
+<launch>
+  <!-- Define some variables -->
+  <let name="rviz_config_path" value="$(find-pkg-share description_package)/rviz/TestingEnvironment.rviz"/>
+  <let name="urdf_path" value="$(find-pkg-share description_package)/urdf/Logisticus.urdf.xacro"/>
+
+  <!-- Start robot_state_publisher -->
+  <node pkg="robot_state_publisher" exec="robot_state_publisher">
+    <param name="robot_description" value="$(command 'xacro $(var urdf_path)')" />
+  </node>
+
+  <!-- Start joint_state_publisher -->
+  <node pkg="joint_state_publisher_gui" exec="joint_state_publisher_gui" />
+
+  <!-- Start RViz -->
+  <node pkg="rviz2" exec="rviz2" args="-d $(var rviz_config_path)" />
+</launch>
