@@ -2,7 +2,12 @@
 <robot name="Logisticus" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!-- Include the required files -->
   <xacro:include filename="$(find description_package)/urdf/xacro/main_body.xacro" />
+  <xacro:include filename="$(find description_package)/urdf/xacro/wheel.xacro" />
   
-  <!-- Load the required parts -->
+  <!-- Load the required visuals/links -->
   <xacro:main_body x="0.35" y="0.25" z="0.05"/>
+  <xacro:wheel_link prefix="front_left" radius="0.04" width="0.035"/>
+  
+  <!-- Load the required joints -->
+  <xacro:wheel_joint prefix="front_left" child="front_left"/>
 </robot>
