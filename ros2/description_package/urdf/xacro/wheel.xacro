@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<robot name="" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Define the visual of the wheel -->
+  <xacro:macro name="wheel_link" params="prefix radius width">
+    <link name="${prefix}_wheel_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+      <geometry>
+        <cylinder radius="${radius*3}" length="${width*3}"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0.1 0.1 1.0"/>
+      </material>
+    </visual>
+  </link>
+  </xacro:macro>
+  
+  <!-- Define the joint of the wheel -->
+  <xacro:macro name="wheel_joint" params="prefix child">
+    <joint name="${prefix}_wheel_base_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="${child}_wheel_link"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+  </xacro:macro>
+</robot>
+
